@@ -3,26 +3,18 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  const user = await prisma.user.create({
-    data: {
-      name: "John Doe",
-      email: "john.doe@example.com",
-      posts: {
-        create: {
-          title: "Hello World",
-          content: "This is my first post!",
-        },
-      },
-    },
-  });
+  try {
+    // Fetch all users
+    const users = await prisma.user.findMany();
 
-  console.log(user);
+    // Print the users
+    console.log("All Users:", users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+  } finally {
+    // Disconnect the Prisma client
+    await prisma.$disconnect();
+  }
 }
 
-main()
-  .catch((e) => {
-    console.error(e);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+main();

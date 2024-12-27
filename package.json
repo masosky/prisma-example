@@ -10,7 +10,8 @@
     "prisma:generate": "npx prisma generate",
     "prisma:deploy": "npx prisma migrate deploy",
     "prisma:reset": "npx prisma migrate reset --force --skip-seed",
-    "prisma:seed": "ts-node prisma/seed.ts"
+    "prisma:seed": "ts-node prisma/seed.ts",
+    "prisma:migrate": "npx prisma migrate dev --name"
   },
   "keywords": [],
   "author": "",
